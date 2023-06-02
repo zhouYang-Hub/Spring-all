@@ -22,4 +22,6 @@ public interface SqlSession {
      * 查询一个
      */
     <T> T selectOne(String statementId, Object... params) throws SQLException, IntrospectionException, NoSuchFieldException, ClassNotFoundException, InvocationTargetException, IllegalAccessException, InstantiationException;
+
+    <T> T getMapper(Class<?> mapperClass);
 }
