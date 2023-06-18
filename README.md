@@ -6,7 +6,8 @@
 2: Mybatis 基础应用
    JDBC properties 标签加载-- 配置文件配置数据源连接信息
    typeAliases 给实体类的全限定名取别名
-
+   动态sql
+   
 【Spring 笔记】
 
 

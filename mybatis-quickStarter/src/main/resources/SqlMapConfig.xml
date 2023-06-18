@@ -10,9 +10,9 @@
     <!--给实体类的全限定名取别名-->
     <typeAliases>
         <!--单独的实体类起别名-->
-        <!--<typeAlias type="com.zhouyang.model.pojo.User" alias="user"/>-->
+        <typeAlias type="com.zhouyang.model.pojo.User" alias="user"/>
         <!--该包下所有类起别名，别名名称为 类的类名，别名不区分大小写-->
-        <package name="com.zhouyang.model.pojo"/>
+        <!--<package name="com.zhouyang.model.pojo"/>-->
 
     </typeAliases>
     <!--environments:运行环境-->

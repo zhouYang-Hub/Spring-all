@@ -86,4 +86,31 @@ public class UserTest {
         List<User> users = userMappers.userAll();
         System.out.println(JSON.toJSONString(users));
     }
+
+    //使用if标签动态sql 查询
+    @Test
+    public void findByConcation() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        IUserDAO userMappers = sqlSession.getMapper(IUserDAO.class);
+        User user = new User();
+        user.setUsername("zhangsan");
+        List<User> users = userMappers.findByCondition(user);
+        System.out.println(JSON.toJSONString(users));
+
+    }
+
+    //foreach 标签动态sql 查询
+    @Test
+    public void findByIds() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        IUserDAO userMappers = sqlSession.getMapper(IUserDAO.class);
+        int[] ids = new int[]{1};
+        List<User> users = userMappers.findByIds(ids);
+        System.out.println(JSON.toJSONString(users));
+
+    }
 }

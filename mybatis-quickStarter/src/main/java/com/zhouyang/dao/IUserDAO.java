@@ -13,4 +13,10 @@ import java.util.List;
 public interface IUserDAO {
 
     List<User> userAll();
+
+    /*多条件查询 ，使用<if> 标签*/
+    List<User> findByCondition(User user);
+
+    /*数组形式接收参数*/
+    List<User> findByIds(int[] ids);
 }
