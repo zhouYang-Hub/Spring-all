@@ -1,9 +1,12 @@
 package com.zhouyang.test;
 
 import com.alibaba.fastjson.JSON;
+import com.zhouyang.dao.IOrderDAO;
 import com.zhouyang.dao.IUserDAO;
 import com.zhouyang.dao.UserDao;
 import com.zhouyang.dao.UserDaoImpl;
+import com.zhouyang.model.pojo.Order;
+import com.zhouyang.model.pojo.Person;
 import com.zhouyang.model.pojo.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -13,6 +16,9 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -111,6 +117,48 @@ public class UserTest {
         int[] ids = new int[]{1};
         List<User> users = userMappers.findByIds(ids);
         System.out.println(JSON.toJSONString(users));
+
+    }
+
+    // 1对1 mapper sql 查询
+    @Test
+    public void userAndOrder() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        IOrderDAO orderDAO = sqlSession.getMapper(IOrderDAO.class);
+        List<Order> orders = orderDAO.userByOrder();
+        System.out.println(JSON.toJSONString(orders));
+
+    }
+
+    @Test
+    public void test01() throws IOException {
+        List<Person> persons = new ArrayList<Person>();
+        Person person = new Person();
+        person.setId(111L);
+        person.setName("zhangsan");
+        person.setAmount(new BigDecimal("11"));
+
+        Person person1 = new Person();
+        person1.setId(222L);
+        person1.setName("lisi");
+        person1.setAmount(new BigDecimal("22"));
+
+        Person person2 = new Person();
+        person2.setId(333L);
+        person2.setName("wangwu");
+        person2.setAmount(new BigDecimal("33"));
+
+        persons.add(person);
+        persons.add(person1);
+        persons.add(person2);
+
+        BigDecimal bigDecimal = persons.stream().map(Person::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
+        System.out.println(bigDecimal);
+
+        ArrayList<Object> arrayList = new ArrayList<>(1);
+        LinkedList<Object> linkedList = new LinkedList<>();
 
     }
 }

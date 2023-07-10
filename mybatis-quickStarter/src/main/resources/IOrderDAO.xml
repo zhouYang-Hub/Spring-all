@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhouyang.dao.IOrderDAO">
+
+
+    <resultMap id="orderMap" type="com.zhouyang.model.pojo.Order">
+        <result property="id" column="id"/>
+        <result property="orderTime" column="orderTime"/>
+        <result property="total" column="total"/>
+        <association property="user" javaType="com.zhouyang.model.pojo.User">
+            <result property="id" column="id"/>
+            <result property="username" column="username"/>
+            <result property="password" column="password"/>
+            <result property="deleted" column="deleted"/>
+        </association>
+    </resultMap>
+    <select id="userByOrder" resultMap="orderMap">
+        select *
+        from `order` o
+                 LEFT JOIN `user` u on o.uid = u.id
+    </select>
+</mapper>

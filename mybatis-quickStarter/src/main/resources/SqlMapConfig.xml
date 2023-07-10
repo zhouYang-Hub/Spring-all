@@ -43,5 +43,6 @@
     <mappers>
         <mapper resource="UserMapper.xml"/>
         <mapper resource="IUserDAO.xml"/>
+        <mapper resource="IOrderDAO.xml"/>
     </mappers>
 </configuration>
