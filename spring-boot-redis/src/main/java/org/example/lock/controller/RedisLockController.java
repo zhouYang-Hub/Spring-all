@@ -1,4 +1,4 @@
-package org.example.lock;
+package org.example.lock.controller;
 
 import org.redisson.RedissonRedLock;
 import org.redisson.api.RLock;
@@ -191,5 +191,5 @@ public class RedisLockController {
         }
     }
 
-    
+
 }
