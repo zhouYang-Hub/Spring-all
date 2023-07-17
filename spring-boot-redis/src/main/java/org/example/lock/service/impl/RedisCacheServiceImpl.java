@@ -53,7 +53,7 @@ public class RedisCacheServiceImpl implements RedisCacheService {
     }
 
     /**
-     * redis  加分布式锁解决热点缓存在并发场景重建问题
+     * redis  加分布式锁解决热点缓存在并发场景重建问题 缓存双写一致性问题 分布式的读写锁 读 可重入  写互斥
      * 双重检测机制，防止击穿数据库
      *
      * @param productId
@@ -69,7 +69,7 @@ public class RedisCacheServiceImpl implements RedisCacheService {
         if (!ObjectUtil.isEmpty(productStr)) {
             if (PRODUCT_EMPTY_CACHE.equals(productStr)) {
                 redisTemplate.expire(PRODUCT_CACHE_KEY, genProductEmptyCacheTimeOut(), TimeUnit.SECONDS);
-                return null;
+                return new UserEntityPO().toString();
             }
             userEntityPO = JSON.parseObject(productStr, UserEntityPO.class);
             //续期
