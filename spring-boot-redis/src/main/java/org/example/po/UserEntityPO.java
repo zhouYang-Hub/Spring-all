@@ -7,15 +7,15 @@ package org.example.po;
  */
 public class UserEntityPO {
 
-    private Integer userId;
+    private String userId;
 
     private String userName;
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -30,7 +30,7 @@ public class UserEntityPO {
     public UserEntityPO() {
     }
 
-    public UserEntityPO(Integer userId, String userName) {
+    public UserEntityPO(String userId, String userName) {
         this.userId = userId;
         this.userName = userName;
     }
