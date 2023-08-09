@@ -1,0 +1,12 @@
+<mapper namespace="user">
+
+    <!--sql 语句-->
+    <select id="userList" resultType="com.zhouyang.pojo.User">
+        select * from user
+    </select>
+
+    <select id="userOne" resultType="com.zhouyang.pojo.User" paramterType="com.zhouyang.pojo.User">
+        select * from user where id = #{id} and username = #{username}
+    </select>
+
+</mapper>
