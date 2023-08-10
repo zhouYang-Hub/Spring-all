@@ -21,7 +21,7 @@ public class OrderController {
 
     @GetMapping("/getOrder")
     public String getOrder() {
-        String result = restTemplate.getForObject("http://localhost:8011/stock/getStock", String.class);
+        String result = restTemplate.getForObject("http://stock-service/stock/getStock", String.class);
         return "get order ...>" + result;
     }
 }
