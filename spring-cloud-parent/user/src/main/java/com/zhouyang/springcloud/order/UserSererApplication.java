@@ -10,8 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date ${YEAR}/${MONTH}/${DAY}
  */
 @SpringBootApplication
-public class OrderSererApplication {
+public class UserSererApplication {
     public static void main(String[] args) {
-        SpringApplication.run(OrderSererApplication.class, args);
+        SpringApplication.run(UserSererApplication.class, args);
     }
 }

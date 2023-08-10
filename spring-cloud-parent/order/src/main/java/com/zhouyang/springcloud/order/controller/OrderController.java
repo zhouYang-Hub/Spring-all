@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
+
 /**
  * OrderController:
  *
@@ -21,7 +23,8 @@ public class OrderController {
 
     @GetMapping("/getOrder")
     public String getOrder() {
+        String userRestUrl = restTemplate.getForObject("http://user-service/user/getUser", String.class);
         String result = restTemplate.getForObject("http://stock-service/stock/getStock", String.class);
-        return "get order ...>" + result;
+        return "用户在" + LocalDateTime.now() + "下单完成；获取订单" + "get order ...>" + result;
     }
 }

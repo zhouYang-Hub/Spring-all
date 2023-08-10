@@ -1,2 +1,12 @@
 server:
   port: 8011
+#应用服务名
+spring:
+  application:
+    name: stock-service
+  cloud:
+    #配置nacos注册中心地址
+    nacos:
+      discovery:
+        server-addr: http://39.104.94.151:7848
+        namespace: 18bab497-6ecb-42c1-9a7c-e9c7dadc554d

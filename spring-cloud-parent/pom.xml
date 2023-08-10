@@ -11,6 +11,7 @@
     <modules>
         <module>order</module>
         <module>stock</module>
+        <module>user</module>
     </modules>
 
     <!-- 继承spring-boot-starter-parent -->

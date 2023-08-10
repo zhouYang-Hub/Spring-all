@@ -24,4 +24,6 @@ public class CacheController {
     public UserEntityPO getUserByUserId(@PathVariable("userId") Integer userId) {
         return cacheService.getUserByUserId(userId);
     }
+
+
 }

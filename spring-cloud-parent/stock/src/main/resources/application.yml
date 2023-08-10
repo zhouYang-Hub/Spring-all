@@ -5,9 +5,8 @@ spring:
   application:
     name: stock-service
   cloud:
+    #配置nacos注册中心地址
     nacos:
-      server-addr: http://localhost:8848
       discovery:
-        username: nacos
-        password: nacos
-        namespace: public
+        server-addr: http://39.104.94.151:7848
+        namespace: 18bab497-6ecb-42c1-9a7c-e9c7dadc554d

@@ -1,9 +1,9 @@
 server:
-  port: 8010
+  port: 8012
 #应用服务名
 spring:
   application:
-    name: order-service
+    name: user-service
   cloud:
     #配置nacos注册中心地址
     nacos:
