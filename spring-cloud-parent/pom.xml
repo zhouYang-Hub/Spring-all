@@ -10,8 +10,10 @@
     <packaging>pom</packaging>
     <modules>
         <module>order</module>
-        <module>stock</module>
-        <module>user</module>
+        <module>stock-1</module>
+        <module>stock-2</module>
+        <module>user-1</module>
+        <module>user-2</module>
     </modules>
 
     <!-- 继承spring-boot-starter-parent -->
