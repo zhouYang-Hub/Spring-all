@@ -1,5 +1,7 @@
 package com.zy.writeService;
 
+import com.zy.spring.Autowired;
+import com.zy.spring.InitializingBean;
 import com.zy.spring.Scope;
 import com.zy.spring.SpringComponent;
 
@@ -13,8 +15,17 @@ import com.zy.spring.SpringComponent;
 //@Scope("singleton")
 //多例bean
 @Scope("prototype")
-public class WriteSpringUserService {
+public class WriteSpringUserService implements InitializingBean {
+
+    @Autowired
+    private WriteSpringOrderService writeSpringOrderService;
+
     public void test() {
-        System.out.println("writeSpringUserService");
+        System.out.println(writeSpringOrderService);
+    }
+
+    @Override
+    public void afterPropertiesSet() {
+        System.out.println("初始化bean");
     }
 }

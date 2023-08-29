@@ -2,6 +2,7 @@ package com.zy.test;
 
 import com.zy.WriteSpringAppConfig;
 import com.zy.spring.ZhouYangClassPathXmlApplicationContext;
+import com.zy.writeService.WriteSpringUserService;
 
 /**
  * @author: ZY
@@ -13,8 +14,16 @@ public class SpringTest {
 
         //扫描路径
         ZhouYangClassPathXmlApplicationContext context = new ZhouYangClassPathXmlApplicationContext(WriteSpringAppConfig.class);
-        System.out.println(context.getBean("writeSpringUserService"));
-        System.out.println(context.getBean("writeSpringUserService"));
-        System.out.println(context.getBean("writeSpringUserService"));
+
+        /*  测试创建 单例bean 和多例bean的过程和结果
+            System.out.println(context.getBean("writeSpringUserService"));
+            System.out.println(context.getBean("writeSpringUserService"));
+            System.out.println(context.getBean("writeSpringUserService"));
+        */
+        /**
+         * 测试依赖注入
+         */
+        WriteSpringUserService writeSpringUserService = (WriteSpringUserService) context.getBean("writeSpringUserService");
+        writeSpringUserService.test();
     }
 }

@@ -1,6 +1,8 @@
 package com.zy.spring;
 
+import java.beans.Introspector;
 import java.io.File;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.HashMap;
@@ -34,9 +36,18 @@ public class ZhouYangClassPathXmlApplicationContext {
     //创建单例bean
     private Object createBean(String beanName, BeanDefinition beanDefinition) {
         Class clazz = beanDefinition.getType();
-        Object bean = null;
+        Object instance = null;
         try {
-            bean = clazz.getConstructor().newInstance();
+            instance = clazz.getConstructor().newInstance();
+            for (Field field : clazz.getDeclaredFields()) {
+                if (field.isAnnotationPresent(Autowired.class)) {
+                    field.setAccessible(Boolean.TRUE);
+                    field.set(instance, getBean(field.getName()));
+                }
+            }
+            if (instance instanceof InitializingBean) {
+                ((InitializingBean) instance).afterPropertiesSet();
+            }
         } catch (InstantiationException e) {
             throw new RuntimeException(e);
         } catch (IllegalAccessException e) {
@@ -46,7 +57,7 @@ public class ZhouYangClassPathXmlApplicationContext {
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
-        return bean;
+        return instance;
     }
 
     /**
@@ -63,7 +74,12 @@ public class ZhouYangClassPathXmlApplicationContext {
         BeanDefinition beanDefinition = beanDefinitionMap.get(beanName);
         if ("singleton".equals(beanDefinition.getScope())) {
             //单例bean
-            return singletonObjects.get(beanName);
+            Object singletonBean = singletonObjects.get(beanName);
+            if (null == singletonBean) {
+                singletonBean = createBean(beanName, beanDefinition);
+                singletonObjects.put(beanName, singletonBean);
+            }
+            return singletonBean;
         } else {
             //原型bean
             return createBean(beanName, beanDefinition);
@@ -91,6 +107,10 @@ public class ZhouYangClassPathXmlApplicationContext {
                         //判断是否有注解 SpringComponent
                         if (clazz.isAnnotationPresent(SpringComponent.class)) {
                             String beanName = clazz.getAnnotation(SpringComponent.class).value();
+                            if (beanName == null || "".equals(beanName)) {
+                                //spring默认根据类的名字生成一个beanName;
+                                beanName = Introspector.decapitalize(clazz.getSimpleName());
+                            }
                             //创建bean
                             BeanDefinition beanDefinition = new BeanDefinition();
                             beanDefinition.setType(clazz);
@@ -111,6 +131,4 @@ public class ZhouYangClassPathXmlApplicationContext {
             }
         }
     }
-
-
 }
