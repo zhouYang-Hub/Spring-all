@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * CustomerRule:
+ * CustomerRule:    自定义负载均衡策略
  *
  * @author zhouYang
  * @date 2023/08/28

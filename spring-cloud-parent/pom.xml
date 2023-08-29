@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
+        <module>loadBalancer</module>
         <module>order</module>
         <module>stock-1</module>
         <module>stock-2</module>
