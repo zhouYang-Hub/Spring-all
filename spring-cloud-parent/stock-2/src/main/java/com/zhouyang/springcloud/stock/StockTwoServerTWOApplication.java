@@ -10,8 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date ${YEAR}/${MONTH}/${DAY}
  */
 @SpringBootApplication
-public class StockServerApplication {
+public class StockTwoServerTWOApplication {
     public static void main(String[] args) {
-        SpringApplication.run(StockServerApplication.class, args);
+        SpringApplication.run(StockTwoServerTWOApplication.class, args);
     }
 }

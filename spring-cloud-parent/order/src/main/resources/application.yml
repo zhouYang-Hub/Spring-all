@@ -10,3 +10,13 @@ spring:
       discovery:
         server-addr: http://39.104.94.151:7848
         namespace: 18bab497-6ecb-42c1-9a7c-e9c7dadc554d
+#配置ribbon负载均衡策略
+stock-service:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.zhouyang.springcloud.ribbon.rule.CustomerRule
+ribbon:
+  eager-load:
+    #开启ribbon的eager-load模式 饥饿加载
+    enabled: true
+    #配置stock-service服务的eager-load模式， 饥饿加载的方式
+    clients: stock-service

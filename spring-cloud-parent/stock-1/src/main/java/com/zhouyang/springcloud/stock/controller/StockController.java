@@ -16,6 +16,6 @@ public class StockController {
 
     @GetMapping("/getStock")
     public String getStock() {
-        return "扣减库存成功！";
+        return "扣减库存成功！" + "port: 8011";
     }
 }
