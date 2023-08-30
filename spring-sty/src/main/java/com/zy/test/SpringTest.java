@@ -2,7 +2,7 @@ package com.zy.test;
 
 import com.zy.WriteSpringAppConfig;
 import com.zy.spring.ZhouYangClassPathXmlApplicationContext;
-import com.zy.writeService.UserServiceInterface;
+import com.zy.writeService.UserServiceInterfaceAwareImpl;
 
 /**
  * @author: ZY
@@ -31,7 +31,15 @@ public class SpringTest {
         /**
          *测试自定义 BeanPostProcessor 实现  AOP 切面
          */
+         /*
         UserServiceInterface userServiceInterface = (UserServiceInterface) context.getBean("userServiceInterfaceImpl");
         userServiceInterface.test();
+      */
+
+        /**
+         *测试自定义aware回调
+         */
+        UserServiceInterfaceAwareImpl userServiceInterfaceAware = (UserServiceInterfaceAwareImpl) context.getBean("userServiceInterfaceAwareImpl");
+        userServiceInterfaceAware.test();
     }
 }

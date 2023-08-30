@@ -26,7 +26,7 @@ public class ZhouYangBeanPostProcessor implements BeanPostProcessor {
         if (beanName.equals("userServiceInterfaceImpl")) {
 
             //invoke
-            // 生成jdk动态代理
+            // 生成jdk动态代理 接口代理类
             Object proxyInstance = Proxy.newProxyInstance(ZhouYangBeanPostProcessor.class.getClassLoader(), bean.getClass().getInterfaces(), new InvocationHandler() {
                 @Override
                 public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {

@@ -48,10 +48,18 @@ public class ZhouYangClassPathXmlApplicationContext {
                     field.set(instance, getBean(field.getName()));
                 }
             }
+            
+            //初始化前置处理器
+            for (BeanPostProcessor beanPostProcessor : beanPostProcessorList) {
+                instance = beanPostProcessor.postProcessBeforeInitialization(instance, beanName);
+            }
+
             if (instance instanceof InitializingBean) {
                 //初始化bean
                 ((InitializingBean) instance).afterPropertiesSet();
             }
+
+            //初始化后置处理器
             for (BeanPostProcessor beanPostProcessor : beanPostProcessorList) {
                 instance = beanPostProcessor.postProcessAfterInitialization(instance, beanName);
             }
@@ -114,7 +122,7 @@ public class ZhouYangClassPathXmlApplicationContext {
                         Class<?> clazz = classLoader.loadClass(absolutePath);
                         //判断是否有注解 SpringComponent
                         if (clazz.isAnnotationPresent(SpringComponent.class)) {
-                            // 如果这个类加了Component注解， 判断这个类是否实现了BeanPostProcessor接口
+                            // 如果这个类加了 Component 注解， 判断这个类是否实现了 BeanPostProcessor 接口
                             if (BeanPostProcessor.class.isAssignableFrom(clazz)) {
                                 BeanPostProcessor instance = (BeanPostProcessor) clazz.getConstructor().newInstance();
                                 beanPostProcessorList.add(instance);
