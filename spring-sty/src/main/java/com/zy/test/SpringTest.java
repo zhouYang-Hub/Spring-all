@@ -2,7 +2,7 @@ package com.zy.test;
 
 import com.zy.WriteSpringAppConfig;
 import com.zy.spring.ZhouYangClassPathXmlApplicationContext;
-import com.zy.writeService.WriteSpringUserService;
+import com.zy.writeService.UserServiceInterface;
 
 /**
  * @author: ZY
@@ -23,7 +23,7 @@ public class SpringTest {
         /**
          * 测试依赖注入
          */
-        WriteSpringUserService writeSpringUserService = (WriteSpringUserService) context.getBean("writeSpringUserService");
+        UserServiceInterface writeSpringUserService = (UserServiceInterface) context.getBean("writeSpringUserService");
         writeSpringUserService.test();
     }
 }

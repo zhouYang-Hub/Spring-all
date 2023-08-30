@@ -5,7 +5,9 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,9 +16,11 @@ import java.util.Map;
  * @date: 2023/8/28 11:20
  */
 public class ZhouYangClassPathXmlApplicationContext {
+
     private Class configClass;
     private Map<String, BeanDefinition> beanDefinitionMap = new HashMap<>();
     private Map<String, Object> singletonObjects = new HashMap<>();
+    private List<BeanPostProcessor> beanPostProcessorList = new ArrayList<>();
 
     public ZhouYangClassPathXmlApplicationContext(Class configClass) {
         this.configClass = configClass;
@@ -30,7 +34,6 @@ public class ZhouYangClassPathXmlApplicationContext {
                 singletonObjects.put(beanName, singletonBean);
             }
         }
-
     }
 
     //创建单例bean
@@ -46,8 +49,13 @@ public class ZhouYangClassPathXmlApplicationContext {
                 }
             }
             if (instance instanceof InitializingBean) {
+                //初始化bean
                 ((InitializingBean) instance).afterPropertiesSet();
             }
+            for (BeanPostProcessor beanPostProcessor : beanPostProcessorList) {
+                instance = beanPostProcessor.postProcessAfterInitialization(instance, beanName);
+            }
+
         } catch (InstantiationException e) {
             throw new RuntimeException(e);
         } catch (IllegalAccessException e) {
@@ -106,26 +114,40 @@ public class ZhouYangClassPathXmlApplicationContext {
                         Class<?> clazz = classLoader.loadClass(absolutePath);
                         //判断是否有注解 SpringComponent
                         if (clazz.isAnnotationPresent(SpringComponent.class)) {
-                            String beanName = clazz.getAnnotation(SpringComponent.class).value();
-                            if (beanName == null || "".equals(beanName)) {
-                                //spring默认根据类的名字生成一个beanName;
-                                beanName = Introspector.decapitalize(clazz.getSimpleName());
-                            }
-                            //创建bean
-                            BeanDefinition beanDefinition = new BeanDefinition();
-                            beanDefinition.setType(clazz);
-                            //判断他是原型bean 还是单利bean 通过scope 注解判断
-                            if (clazz.isAnnotationPresent(Scope.class)) {
-                                String value = clazz.getAnnotation(Scope.class).value();
-                                beanDefinition.setScope(value);
+                            // 如果这个类加了Component注解， 判断这个类是否实现了BeanPostProcessor接口
+                            if (BeanPostProcessor.class.isAssignableFrom(clazz)) {
+                                BeanPostProcessor instance = (BeanPostProcessor) clazz.getConstructor().newInstance();
+                                beanPostProcessorList.add(instance);
                             } else {
-                                //单例
-                                beanDefinition.setScope("singleton");
+                                String beanName = clazz.getAnnotation(SpringComponent.class).value();
+                                if (beanName == null || "".equals(beanName)) {
+                                    //spring默认根据类的名字生成一个beanName;
+                                    beanName = Introspector.decapitalize(clazz.getSimpleName());
+                                }
+                                //创建bean
+                                BeanDefinition beanDefinition = new BeanDefinition();
+                                beanDefinition.setType(clazz);
+                                //判断他是原型bean 还是单利bean 通过scope 注解判断
+                                if (clazz.isAnnotationPresent(Scope.class)) {
+                                    String value = clazz.getAnnotation(Scope.class).value();
+                                    beanDefinition.setScope(value);
+                                } else {
+                                    //单例
+                                    beanDefinition.setScope("singleton");
+                                }
+                                beanDefinitionMap.put(beanName, beanDefinition);
                             }
-                            beanDefinitionMap.put(beanName, beanDefinition);
                         }
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        throw new RuntimeException(e);
+                    } catch (InstantiationException e) {
+                        throw new RuntimeException(e);
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    } catch (NoSuchMethodException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             }

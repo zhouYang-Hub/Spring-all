@@ -7,6 +7,6 @@ import com.zy.spring.SpringComponent;
  * @description
  * @date: 2023/8/28 11:23
  */
-@SpringComponent
+@SpringComponent("writeSpringOrderService")
 public class WriteSpringOrderService {
 }
