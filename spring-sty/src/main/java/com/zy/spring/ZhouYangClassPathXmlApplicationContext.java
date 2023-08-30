@@ -124,7 +124,7 @@ public class ZhouYangClassPathXmlApplicationContext {
                                     //spring默认根据类的名字生成一个beanName;
                                     beanName = Introspector.decapitalize(clazz.getSimpleName());
                                 }
-                                //创建bean
+                                //创建 bean
                                 BeanDefinition beanDefinition = new BeanDefinition();
                                 beanDefinition.setType(clazz);
                                 //判断他是原型bean 还是单利bean 通过scope 注解判断

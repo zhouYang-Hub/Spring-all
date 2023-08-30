@@ -23,7 +23,15 @@ public class SpringTest {
         /**
          * 测试依赖注入
          */
-        UserServiceInterface writeSpringUserService = (UserServiceInterface) context.getBean("writeSpringUserService");
+        /*
+        WriteSpringUserService writeSpringUserService = (WriteSpringUserService) context.getBean("writeSpringUserService");
         writeSpringUserService.test();
+        */
+
+        /**
+         *测试自定义 BeanPostProcessor 实现  AOP 切面
+         */
+        UserServiceInterface userServiceInterface = (UserServiceInterface) context.getBean("userServiceInterfaceImpl");
+        userServiceInterface.test();
     }
 }

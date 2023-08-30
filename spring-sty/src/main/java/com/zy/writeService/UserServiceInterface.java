@@ -7,5 +7,5 @@ package com.zy.writeService;
  */
 public interface UserServiceInterface {
 
-    void test();
+    public void test();
 }

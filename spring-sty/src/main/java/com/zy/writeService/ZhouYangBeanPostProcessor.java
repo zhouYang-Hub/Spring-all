@@ -19,12 +19,12 @@ public class ZhouYangBeanPostProcessor implements BeanPostProcessor {
     public Object postProcessAfterInitialization(Object bean, String beanName) {
 
         //初始化之后
-
+        System.out.println("初始化后 beanName:" + beanName);
         /**
          * 控制指定beanName走这个初始化后的逻辑
          */
-        if (beanName.equals("writeSpringUserService")) {
-            System.out.println("初始化后 beanName:" + beanName);
+        if (beanName.equals("userServiceInterfaceImpl")) {
+
             //invoke
             // 生成jdk动态代理
             Object proxyInstance = Proxy.newProxyInstance(ZhouYangBeanPostProcessor.class.getClassLoader(), bean.getClass().getInterfaces(), new InvocationHandler() {
