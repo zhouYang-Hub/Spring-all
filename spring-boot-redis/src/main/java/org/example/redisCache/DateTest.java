@@ -1,6 +1,8 @@
 package org.example.redisCache;
 
-import java.util.regex.Matcher;
+import org.springframework.util.ObjectUtils;
+
+import java.math.BigDecimal;
 import java.util.regex.Pattern;
 
 public class DateTest {
@@ -21,14 +23,14 @@ public class DateTest {
 
         Pattern pattern = Pattern.compile(regex);
 
-        for (String testString : testStrings) {
+        /*for (String testString : testStrings) {
             Matcher matcher = pattern.matcher(testString);
             if (matcher.matches()) {
                 System.out.println("'" + testString + "' 符合条件");
             } else {
                 System.out.println("'" + testString + "' 不符合条件");
             }
-        }
+        }*/
 //        System.out.println(regexDate("2022/08/12"));
 
 //        String aa = "2022/8/01";
@@ -40,7 +42,12 @@ public class DateTest {
 //        } else {
 //            System.out.println("error");
 //        }
-
+        BigDecimal bigDecimal = new BigDecimal("0.00");
+        if (ObjectUtils.isEmpty(bigDecimal)) {
+            System.out.println("1");
+        } else {
+            System.out.println("22");
+        }
     }
 
     static boolean regexDate(String str) {

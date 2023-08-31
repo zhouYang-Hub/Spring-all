@@ -14,4 +14,16 @@ public interface BeanPostProcessor {
     default Object postProcessAfterInitialization(Object bean, String beanName) {
         return bean;
     }
+
+    /**
+     * 自定义方法
+     *
+     * @param bean
+     * @param beanName
+     * @return
+     */
+    default Object postProcessBeforeInstantiationOn(Object bean, String beanName) {
+        return bean;
+    }
+
 }
