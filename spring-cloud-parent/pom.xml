@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>loadBalancer</module>
+        <module>order-openfeign</module>
         <module>order</module>
         <module>stock-1</module>
         <module>stock-2</module>
