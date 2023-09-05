@@ -1,5 +1,6 @@
 package com.zhouyang.springcloud.order.config;
 
+import com.zhouyang.springcloud.order.interceptor.feign.AuthFeignInterceptor;
 import feign.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,4 +29,40 @@ public class OpenFeignConfig {
     public Logger.Level feignLoggerLevel() {
         return Logger.Level.FULL;
     }
+
+    /**
+     * 使用feign的注解，就必须使用feign的注解
+     *
+     * @return
+     */
+   /*
+   @Bean
+    public Contract feignContract() {
+        return new feign.Contract.Default();
+    }
+    */
+
+
+    /**
+     * 设置连接超时时间和读取超时时间
+     * 默认的连接超时时间是10s，读取超时时间是60s
+     *
+     * @return
+     */
+   /*
+    @Bean
+    public Request.Options options() {
+        return new Request.Options(5000, 10000);
+    }
+    */
+
+    /**
+     * 使用feign的拦截器
+     * @return
+     */
+    @Bean
+    public AuthFeignInterceptor authFeignInterceptor() {
+        return new AuthFeignInterceptor();
+    }
+
 }

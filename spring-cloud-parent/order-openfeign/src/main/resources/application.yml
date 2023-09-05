@@ -14,3 +14,14 @@ spring:
 logging:
   level:
     com.zhouyang.springcloud.order.feign: debug #单独配置openFeign 的日志级别
+#配置openFeign 的日志级别
+feign:
+  client:
+    config:
+      order-service: #服务名
+        connect-timeout: 5000 #连接超时时间
+        read-timeout: 5000 #读取超时时间
+        loggerLevel: full #配置openFeign 的日志级别
+        contract: feign.Contract.Default #配置openFeign 的契约为默认的契约
+        request-interceptors[0]: #配置openFeign 的拦截器
+          - com.zhouyang.springcloud.order.interceptor.feign.AuthFeignInterceptor #配置openFeign 的拦截器
