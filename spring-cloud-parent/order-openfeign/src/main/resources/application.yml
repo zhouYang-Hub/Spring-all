@@ -10,3 +10,7 @@ spring:
       discovery:
         server-addr: http://39.104.94.151:7848
         namespace: 18bab497-6ecb-42c1-9a7c-e9c7dadc554d
+#配置springboot 的日志级别 ，保证openFeign 的日志级别 和springboot 一致 都是debug，也可以全局配置， 也可以单独配置，这里单独配置 为了方便查看 openFeign 的日志
+logging:
+  level:
+    com.zhouyang.springcloud.order.feign: debug #单独配置openFeign 的日志级别
