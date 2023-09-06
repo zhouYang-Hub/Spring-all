@@ -1,0 +1,18 @@
+#naocs配置中心
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: http://39.104.94.151:7848
+        namespace: 18bab497-6ecb-42c1-9a7c-e9c7dadc554d
+        #配置文件的data-id
+        file-extension: yml
+        #配置文件的格式data-id = ${spring.application.name}.${spring.cloud.nacos.config.file-extension}
+        # shared-configs: 加载公共配置文件  -data-id:  下标从0开始 ，一次进行加载，重复的配置文件会覆盖
+        shared-configs:
+          - data-id: config.nacos.common.properties
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: config.nacos.common2.properties
+            group: DEFAULT_GROUP
+            refresh: true

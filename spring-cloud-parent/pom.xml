@@ -16,6 +16,7 @@
         <module>stock-2</module>
         <module>user-1</module>
         <module>user-2</module>
+        <module>config-nacos</module>
     </modules>
 
     <!-- 继承spring-boot-starter-parent -->

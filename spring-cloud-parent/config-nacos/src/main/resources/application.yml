@@ -1,0 +1,9 @@
+server:
+  port: 9710
+#应用服务名
+spring:
+  application:
+    #name: order-service 必须和nacos中的配置文件名一致 ，才能自动发现，如果不一致，需要手动指定 data-id
+    name: config-nacos
+  profiles:
+    active: dev
