@@ -17,6 +17,7 @@
         <module>user-1</module>
         <module>user-2</module>
         <module>config-nacos</module>
+        <module>gateway</module>
     </modules>
 
     <!-- 继承spring-boot-starter-parent -->
