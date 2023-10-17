@@ -1,4 +1,4 @@
-package com.zhouyang.shop;
+package com.zhouyang.mq.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
