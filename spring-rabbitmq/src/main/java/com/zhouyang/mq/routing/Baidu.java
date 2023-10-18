@@ -19,7 +19,7 @@ public class Baidu {
 
         //声明队列
         channel.queueDeclare(RabbitConstant.QUEUE_BAIDU, true, false, false, null);
-        //队列绑定交换机 参数1：队列名称  参数2：交换机名称  参数3：路由key(暂时用不到)
+        //队列绑定交换机 参数1：队列名称  参数2：交换机名称  参数3：路由key
         channel.queueBind(RabbitConstant.QUEUE_BAIDU, RabbitConstant.EXCHANGE_WEATHER_ROUTING, "china.hebei.shijiazhuang.20991011");
 
         channel.basicQos(1);
