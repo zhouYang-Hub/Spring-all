@@ -1,4 +1,4 @@
-package com.zhouyang.mq.model;
+package com.zhouyang.mq.yuansheng.model;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

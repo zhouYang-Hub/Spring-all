@@ -1,4 +1,4 @@
-package com.zhouyang.mq.work;
+package com.zhouyang.mq.yuansheng.work;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -31,7 +31,7 @@ public class SmsSender2 {
 
         //每次消费一条在取下一条
         channel.basicQos(1);
-        
+
         /**
          * 消费消息
          */

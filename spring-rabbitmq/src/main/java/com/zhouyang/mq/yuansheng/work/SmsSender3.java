@@ -1,4 +1,4 @@
-package com.zhouyang.mq.work;
+package com.zhouyang.mq.yuansheng.work;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -11,7 +11,7 @@ import com.zhouyang.mq.util.RabbitMqUtil;
  * @description 消费消息
  * @date: 2023/10/17 15:50
  */
-public class SmsSender1 {
+public class SmsSender3 {
     public static void main(String[] args) throws Exception {
         System.out.println("接受消息开始");
 
@@ -31,6 +31,7 @@ public class SmsSender1 {
 
         //每次消费一条在取下一条
         channel.basicQos(1);
+
         /**
          * 消费消息
          */

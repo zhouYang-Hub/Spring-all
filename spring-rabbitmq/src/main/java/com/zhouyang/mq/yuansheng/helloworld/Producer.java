@@ -1,4 +1,4 @@
-package com.zhouyang.mq.helloworld;
+package com.zhouyang.mq.yuansheng.helloworld;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;

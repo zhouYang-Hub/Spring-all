@@ -1,4 +1,4 @@
-package com.zhouyang.mq.work;
+package com.zhouyang.mq.yuansheng.helloworld;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -11,7 +11,7 @@ import com.zhouyang.mq.util.RabbitMqUtil;
  * @description 消费消息
  * @date: 2023/10/17 15:50
  */
-public class SmsSender3 {
+public class Consumer {
     public static void main(String[] args) throws Exception {
         System.out.println("接受消息开始");
 
@@ -27,15 +27,12 @@ public class SmsSender3 {
          *  可以使用channel.basicQos(1);来设置每次消费一个消息
          *  注意：如果要实现消息的自动确认，必须要关闭自动确认，即第二个参数设置为false，否则无效
          */
-        channel.queueDeclare(RabbitConstant.QUEUE_SMS, true, false, false, null);
-
-        //每次消费一条在取下一条
-        channel.basicQos(1);
+        channel.queueDeclare(RabbitConstant.QUEUE_HELLO_WORLD, true, false, false, null);
 
         /**
          * 消费消息
          */
-        channel.basicConsume(RabbitConstant.QUEUE_SMS, false, new Reciver(channel));
+        channel.basicConsume(RabbitConstant.QUEUE_HELLO_WORLD, false, new Reciver(channel));
     }
 
     static class Reciver extends DefaultConsumer {

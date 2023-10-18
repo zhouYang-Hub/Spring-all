@@ -1,11 +1,11 @@
-package com.zhouyang.mq.work;
+package com.zhouyang.mq.yuansheng.work;
 
 import cn.hutool.json.JSONUtil;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.zhouyang.mq.constant.RabbitConstant;
-import com.zhouyang.mq.model.Sms;
 import com.zhouyang.mq.util.RabbitMqUtil;
+import com.zhouyang.mq.yuansheng.model.Sms;
 
 /**
  * @author: ZY

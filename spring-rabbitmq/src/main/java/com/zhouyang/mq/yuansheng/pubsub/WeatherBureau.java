@@ -1,4 +1,4 @@
-package com.zhouyang.mq.pubsub;
+package com.zhouyang.mq.yuansheng.pubsub;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -12,7 +12,7 @@ import java.util.Scanner;
  * @description
  * @date: 2023/10/17 17:07
  */
-public class weatherBureau {
+public class WeatherBureau {
 
     public static void main(String[] args) throws Exception {
 
