@@ -23,7 +23,7 @@
         set password=#{password}
         where id = #{id}
     </update>
-.
+    .
     <!--删除用户信息-->
     <delete id="deleteUser" parameterType="com.zhouyang.model.pojo.User">
         delete

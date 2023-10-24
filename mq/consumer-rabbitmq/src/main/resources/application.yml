@@ -1,0 +1,11 @@
+spring:
+  rabbitmq:
+    host: 39.104.94.151
+    port: 5675
+    virtual-host: /zhouyang
+    username: zhouyang
+    password: zhouyang
+  application:
+    name: consumer-rabbitmq
+server:
+  port: 8082
