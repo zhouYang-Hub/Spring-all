@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ListenerQueue {
+    
     @RabbitListener(queues = "boot_queue")
     public void listenerQueue(Message message) {
         System.out.println("boot_queue接收到消息：" + message.getBody());
@@ -19,4 +20,5 @@ public class ListenerQueue {
         System.out.println("deliveryTag = " + deliveryTag);
 
     }
+
 }
