@@ -1,0 +1,13 @@
+spring:
+  rabbitmq:
+    host: 39.104.94.151
+    port: 5675
+    virtual-host: /zhouyang
+    username: zhouyang
+    password: zhouyang
+    publisher-confirm-type: correlated # 开启消息确认机制
+    publisher-returns: true # 开启消息失败返回
+  application:
+    name: producer-rabbitmq
+server:
+  port: 8081

@@ -58,6 +58,7 @@ public class OpenFeignConfig {
 
     /**
      * 使用feign的拦截器
+     *
      * @return
      */
     @Bean
